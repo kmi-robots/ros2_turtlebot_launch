@@ -1,0 +1,48 @@
+kobuki_ros_node:
+  ros__parameters:
+    acceleration_limiter: false
+    battery_capacity: 16.5
+    battery_low: 14.0
+    battery_dangerous: 13.2
+    device_port: /dev/kobuki
+    cmd_vel_timeout_sec: 0.6
+    odom_frame: odom
+    base_frame: base
+    publish_tf: true
+    use_imu_heading: true
+    wheel_left_joint_name: wheel_left_joint
+    wheel_right_joint_name: wheel_right_joint
+
+cmd_vel_mux:
+  ros__parameters:
+    subscribers:
+        default_input:
+          topic:       "input/default"
+          timeout:     0.1
+          priority:    0
+          short_desc:  "The default cmd_vel, controllers unaware that we are multiplexing cmd_vel should come here"
+        navigation_stack:
+          topic:       "input/navigation"
+          timeout:     0.5
+          priority:    1
+          short_desc:  "Navigation stack controller"
+        navigation_stack_controller:
+          topic:       "input/joystick"
+          timeout:     0.1
+          priority:    10
+          short_desc:  "Navigation stack remote control"
+        remote_control:
+          topic:       "input/remote"
+          timeout:     0.1
+          priority:    9
+          short_desc:  "Remote control"
+        web_application:
+          topic:       "input/webapp"
+          timeout:     0.3
+          priority:    8
+          short_desc:  "Web application"
+        keyboard_operation:
+          topic:       "input/keyop"
+          timeout:     0.1
+          priority:    7
+          short_desc:  "Keyboard operation"
