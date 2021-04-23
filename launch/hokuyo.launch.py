@@ -17,7 +17,7 @@ def generate_launch_description():
         executable='static_transform_publisher',
         arguments=['0.0', '0.0', '0.38',
                    '0.0', '0.0', '0.0', '1.0',
-                   'base', 'laser']
+                   'base_link', 'laser']
     )
 
     return launch.LaunchDescription([
