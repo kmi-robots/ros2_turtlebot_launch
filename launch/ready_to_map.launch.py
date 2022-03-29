@@ -10,7 +10,7 @@ def generate_launch_description():
     launch_dir = os.path.join(get_package_share_directory('ros2_turtlebot_launch'), 'launch')
 
     return LaunchDescription([
-        IncludeLaunchDescription(PythonLaunchDescriptionSource([launch_dir, '/hokuyo.launch.py'])),
+        IncludeLaunchDescription(PythonLaunchDescriptionSource([launch_dir, '/velodyne.launch.py'])),
         IncludeLaunchDescription(PythonLaunchDescriptionSource([launch_dir, '/minimal.launch.py'])),
         IncludeLaunchDescription(PythonLaunchDescriptionSource([launch_dir, '/teleop.launch.py']))
         ])
