@@ -63,7 +63,7 @@ def generate_launch_description():
 
     declare_map_yaml_cmd = DeclareLaunchArgument(
         'map',
-        default_value=os.path.join(kmi_pkg_dir, 'map', 'perivale.yaml'),
+        default_value=os.path.join(kmi_pkg_dir, 'map', 'south_wing.yaml'),
         description='Full path to map file to load')
 
     declare_use_sim_time_cmd = DeclareLaunchArgument(

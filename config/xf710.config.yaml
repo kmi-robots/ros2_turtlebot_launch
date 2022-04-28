@@ -3,14 +3,16 @@ teleop_twist_joy_node:
     axis_linear:  # Left thumb stick vertical
       x: 1
     scale_linear:
-      x: 0.7
+      x: 0.5
     scale_linear_turbo:
-      x: 1.5
+      x: 0.7
 
     axis_angular:  # Left thumb stick horizontal
       yaw: 0
     scale_angular:
-      yaw: 0.4
+      yaw: 1.0
+    scale_angular_turbo:
+      yaw: 1.0
 
     enable_button: 5  # Right shoulder button
     enable_turbo_button: 2  # X
@@ -38,4 +40,4 @@ velocity_smoother:
     #  0 - none
     #  1 - odometry
     #  2 - actual commanded velocity (e.g. after it's been piped through a mux)
-    feedback: 2
+    feedback: 0

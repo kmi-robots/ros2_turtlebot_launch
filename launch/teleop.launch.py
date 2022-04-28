@@ -44,10 +44,12 @@ def generate_launch_description():
     return launch.LaunchDescription([
         launch.actions.DeclareLaunchArgument('joy_config', default_value='xf710'),
         launch.actions.DeclareLaunchArgument('joy_dev', default_value='/dev/f710'),
-        launch.actions.DeclareLaunchArgument('config_filepath', default_value=[
-            launch.substitutions.TextSubstitution(text=os.path.join(
-                get_package_share_directory('ros2_turtlebot_launch'), 'config', '')),
-            joy_config, launch.substitutions.TextSubstitution(text='.config.yaml')]),
+        #launch.actions.DeclareLaunchArgument('config_filepath', default_value=[
+            #launch.substitutions.TextSubstitution(text=os.path.join(
+                #get_package_share_directory('ros2_turtlebot_launch'), 'config', '')),
+        launch.actions.DeclareLaunchArgument('config_filepath', 
+                                             default_value=os.path.join(get_package_share_directory('ros2_turtlebot_launch'),
+                                                                        'config', 'xf710.config.yaml')),
         joy_node,
         teleop_node,
         velocity_smoother
