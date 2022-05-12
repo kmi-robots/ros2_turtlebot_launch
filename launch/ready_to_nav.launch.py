@@ -13,5 +13,5 @@ def generate_launch_description():
         IncludeLaunchDescription(PythonLaunchDescriptionSource([launch_dir, '/velodyne.launch.py'])),
         IncludeLaunchDescription(PythonLaunchDescriptionSource([launch_dir, '/astra_tf.launch.py'])),
         IncludeLaunchDescription(PythonLaunchDescriptionSource([launch_dir, '/minimal.launch.py'])),
-        IncludeLaunchDescription(PythonLaunchDescriptionSource([launch_dir, '/navigation2.launch.py']))
+        IncludeLaunchDescription(PythonLaunchDescriptionSource([launch_dir, '/nav2.launch.py']))
         ])

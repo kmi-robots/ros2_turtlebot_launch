@@ -31,8 +31,6 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time')
     autostart = LaunchConfiguration('autostart')
     params_file = LaunchConfiguration('params_file')
-    default_bt_xml_filename = LaunchConfiguration('default_bt_xml_filename')
-    map_subscribe_transient_local = LaunchConfiguration('map_subscribe_transient_local')
 
     lifecycle_nodes = ['controller_server',
                        'planner_server',
@@ -47,14 +45,13 @@ def generate_launch_description():
     # TODO(orduno) Substitute with `PushNodeRemapping`
     #              https://github.com/ros2/launch_ros/issues/56
     remappings = [('/tf', 'tf'),
-                  ('/tf_static', 'tf_static')]
+                  ('/tf_static', 'tf_static'),
+                  ('cmd_vel', 'commands/velocity')]
 
     # Create our own temporary YAML files that include substitutions
     param_substitutions = {
         'use_sim_time': use_sim_time,
-        'default_bt_xml_filename': default_bt_xml_filename,
-        'autostart': autostart,
-        'map_subscribe_transient_local': map_subscribe_transient_local}
+        'autostart': autostart}
 
     configured_params = RewrittenYaml(
             source_file=params_file,
@@ -83,23 +80,12 @@ def generate_launch_description():
             default_value=os.path.join(bringup_dir, 'params', 'nav2_params.yaml'),
             description='Full path to the ROS2 parameters file to use'),
 
-        DeclareLaunchArgument(
-            'default_bt_xml_filename',
-            default_value=os.path.join(
-                get_package_share_directory('nav2_bt_navigator'),
-                'behavior_trees', 'navigate_w_replanning_and_recovery.xml'),
-            description='Full path to the behavior tree xml file to use'),
-
-        DeclareLaunchArgument(
-            'map_subscribe_transient_local', default_value='false',
-            description='Whether to set the map subscriber QoS to transient local'),
-
         Node(
             package='nav2_controller',
             executable='controller_server',
             output='screen',
             parameters=[configured_params],
-            remappings=remappings+[('/cmd_vel', '/input/navigation')]),
+            remappings=remappings),
 
         Node(
             package='nav2_planner',
